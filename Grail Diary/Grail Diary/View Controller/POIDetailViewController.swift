@@ -10,12 +10,32 @@ import UIKit
 
 class POIDetailViewController: UIViewController {
 
+    @IBOutlet weak var countryLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var cluesTextView: UITextView!
+    
+    var pOi: POI?
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        updateViews()
     }
     
+    private func updateViews() {
+        
+        if !isViewLoaded {return}
+        
+        guard let pOi = pOi else {return}
+        
+        countryLabel.text = pOi.country
+        locationLabel.text = pOi.location
+        
+        for str in pOi.clues {
+            cluesTextView.text = "\(str) \n"
+        }
+        
+    }
 
     /*
     // MARK: - Navigation
